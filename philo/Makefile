@@ -2,7 +2,8 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -pthread
 NAME = philo
 
-SRC = utils.c params_checker.c error_handler.c
+SRC = 	error_handler.c error_handler2.c forks.c memory.c monitor.c\
+		params_checker.c philo_routine.c philo.c program.c utils.c
 
 ROOT_DIR = ./
 OBJ_DIR = obj

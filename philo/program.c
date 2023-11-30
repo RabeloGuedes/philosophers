@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   program.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/29 14:49:53 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/11/30 11:21:33 by arabelo-         ###   ########.fr       */
+/*   Created: 2023/11/30 18:13:00 by arabelo-          #+#    #+#             */
+/*   Updated: 2023/11/30 22:57:38 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-size_t	ft_strlen(const char *str)
+bool	init_program(int ac, char **av, t_program *program, t_monitor *monitor)
 {
-	size_t	i;
-
-	i = 0;
-	while (str && str[i])
-		i++;
-	return (i);
-}
-
-// This function convert a string representation of
-// a number into a unsigned long and returns it.
-size_t	ft_atoul(const char *str)
-{
-	size_t	res;
-
-	res = 0;
-	while (*str >= '0' && *str <= '9')
-		res = res * 10 + (*str++ - 48);
-	return (res);
+	program->ac = ac;
+	program->av = av;
+	program->monitor = monitor;
+	program->philos_amount = ft_atoul(*av);
+	program->created_forks_mutexes = 0;
+	if (!init_monitor(program, av))
+		return (false);
+	if (!init_forks(program, program->philos_amount))
+		return (false);
+	if (!init_philos(program))
+		return (false);
+	return (true);
 }
