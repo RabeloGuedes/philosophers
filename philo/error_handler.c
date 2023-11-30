@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 14:47:17 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/11/29 15:47:27 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/11/30 12:47:31 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,20 @@ void	signed_param_error(void)
 {
 	write(2, SIGNED_PARAM_ERROR_MESSAGE,
 		ft_strlen(SIGNED_PARAM_ERROR_MESSAGE));
+}
+
+
+// This function displays an error message
+// explaning that a mutex initialization failed.
+void	mutex_error(void)
+{
+	write(2, MUTEX_ERROR_MESSAGE, ft_strlen(MUTEX_ERROR_MESSAGE));
+}
+
+// This function displays an error message
+// explaning that the pthread create function failed.
+void	pthread_create_error(void)
+{
+	write(2, PTHREAD_CREATE_ERROR_MESSAGE,
+		ft_strlen(PTHREAD_CREATE_ERROR_MESSAGE));
 }
