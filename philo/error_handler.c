@@ -6,21 +6,24 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 14:47:17 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/11/30 12:47:31 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/02 14:12:33 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-// This function displays an error message explaining the wrong argument type.
+/// @brief  This function displays an error message
+// explaining the wrong argument type.
+/// @param  
 void	no_num_param_error(void)
 {
 	write(2, NO_NUM_PARAM_ERROR_MESSAGE,
 		ft_strlen(NO_NUM_PARAM_ERROR_MESSAGE));
 }
 
-// This function displays an error message
+/// @brief  This function displays an error message
 // explaining the wrong argument amount.
+/// @param  
 void	wrong_param_amount_error(void)
 {
 	write(2, WRONG_PARAM_AMOUNT_ERROR_MESSAGE1,
@@ -35,8 +38,9 @@ void	wrong_param_amount_error(void)
 		ft_strlen(WRONG_PARAM_AMOUNT_ERROR_MESSAGE5));
 }
 
-// This function displays an error message
+/// @brief This function displays an error message
 // explaining the signed argument.
+/// @param  
 void	signed_param_error(void)
 {
 	write(2, SIGNED_PARAM_ERROR_MESSAGE,
@@ -44,15 +48,17 @@ void	signed_param_error(void)
 }
 
 
-// This function displays an error message
+/// @brief This function displays an error message
 // explaning that a mutex initialization failed.
+/// @param  
 void	mutex_error(void)
 {
 	write(2, MUTEX_ERROR_MESSAGE, ft_strlen(MUTEX_ERROR_MESSAGE));
 }
 
-// This function displays an error message
+/// @brief This function displays an error message
 // explaning that the pthread create function failed.
+/// @param  
 void	pthread_create_error(void)
 {
 	write(2, PTHREAD_CREATE_ERROR_MESSAGE,

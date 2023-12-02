@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:43:41 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/11/29 15:48:00 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/02 14:13:13 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ bool	is_num(int c)
 	return (c >= '0' && c <= '9');
 }
 
-// This function checks if a given string is only numeric.
+/// @brief  This function checks if a given string is only numeric.
+/// @param str 
+/// @return 
 bool	is_param_valid(char *str)
 {
 	unsigned int	i;
@@ -40,7 +42,9 @@ bool	is_param_valid(char *str)
 	return (true);
 }
 
-// This function checks if all parameters are valid.
+/// @brief  This function checks if all parameters are valid.
+/// @param av 
+/// @return 
 bool	check_all_params(char **av)
 {
 	while (*av)

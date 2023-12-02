@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 14:49:53 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/11/30 11:21:33 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/02 14:13:57 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-// This function convert a string representation of
+/// @brief This function convert a string representation of
 // a number into a unsigned long and returns it.
+/// @param str 
+/// @return
 size_t	ft_atoul(const char *str)
 {
 	size_t	res;

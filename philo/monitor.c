@@ -6,13 +6,16 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:00:42 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/11/30 21:25:01 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/02 14:12:59 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-// This function initializes the monitor struct
+/// @brief  This function initializes the monitor struct
+/// @param program 
+/// @param av 
+/// @return 
 bool	init_monitor(t_program *program, char **av)
 {
 	program->monitor->anyone_dead = false;
