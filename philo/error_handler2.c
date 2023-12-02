@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 13:19:09 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/02 14:56:33 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/02 15:58:46 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,13 @@ void	pthread_join_error(void)
 {
 	write(2, PTHREAD_JOIN_ERROR_MESSAGE,
 		ft_strlen(PTHREAD_JOIN_ERROR_MESSAGE));
+}
+
+/// @brief This function displays an error message explaining
+// that the gettimeofday function call failed.
+/// @param  
+void	gettimeofday_error(void)
+{
+	write(2, GETTIMEOFDAY_ERROR_MESSAGE,
+		ft_strlen(GETTIMEOFDAY_ERROR_MESSAGE));
 }

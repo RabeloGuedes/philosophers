@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 11:14:56 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/02 14:42:24 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/02 16:19:44 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void	philos_attributes(char **av,
 		philos[i].time_to_eat_ms = ft_atoul(*(av + 2));
 		philos[i].time_to_sleep_ms = ft_atoul(*(av + 3));
 		philos[i].num_meals = 0;
+		philos[i].last_meal_timestamp = timestamp();
+		philos[i].start_timestamp = timestamp();
 		i++;
 	}
 }
