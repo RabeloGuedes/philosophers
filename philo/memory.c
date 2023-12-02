@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:59:05 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/02 14:56:18 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/02 15:38:12 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	destroy_monitor(t_monitor *monitor, size_t level)
 void	free_project(t_program *program,
 	size_t level, void (*call_back_fn)(void))
 {
-	call_back_fn();
+	if (call_back_fn)
+		call_back_fn();
 	if (level == 1)
 		destroy_monitor(program->monitor, 1);
 	else if (level == 2)
