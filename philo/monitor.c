@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:00:42 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/02 14:12:59 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/02 14:43:08 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ bool	init_monitor(t_program *program, char **av)
 	program->monitor->anyone_dead = false;
 	if (pthread_mutex_init(&program->monitor->dead_flag_lock, NULL))
 	{
-		free_project(program, 0, &mutex_error);
+		free_project(program, FP_LEVEL_0, &mutex_error);
 		return (false);
 	}
 	if (pthread_mutex_init(&program->monitor->meals_flag_lock, NULL))
 	{
-		free_project(program, 1, &mutex_error);
+		free_project(program, FP_LEVEL_1, &mutex_error);
 		return (false);
 	}
 	if (pthread_mutex_init(&program->monitor->printf_lock, NULL))
 	{
-		free_project(program, 2, &mutex_error);
+		free_project(program, FP_LEVEL_2, &mutex_error);
 		return (false);
 	}
 	if (*(av + 4))

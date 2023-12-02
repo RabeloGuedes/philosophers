@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 18:13:00 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/02 14:11:31 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/02 14:30:38 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,22 @@ bool	init_program(int ac, char **av, t_program *program, t_monitor *monitor)
 		return (false);
 	if (!init_philos(program))
 		return (false);
+	return (true);
+}
+
+bool	run_program(t_program *program)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < program->philos_amount)
+	{
+		if (pthread_join(program->philos[i].thread, NULL))
+		{
+			free_project(program, FP_LEVEL_5, &pthread_join_error);
+			return (false);
+		}
+		i++;
+	}
 	return (true);
 }

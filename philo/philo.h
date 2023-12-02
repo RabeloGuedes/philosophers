@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:39:34 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/11/30 22:41:53 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/02 14:30:24 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,22 @@
 # define PTHREAD_CREATE_ERROR_MESSAGE "Error: Pthread creation failed!\n"
 // pthread create error message
 
+// pthread join error message
+# define PTHREAD_JOIN_ERROR_MESSAGE "Error: Pthread join failed!\n"
+// pthread join error message
+
 // signed parameter error message
 # define SIGNED_PARAM_ERROR_MESSAGE "Error: Signed parameter!\n"
 // signed parameter error message
+
+// Free project levels
+# define FP_LEVEL_0 0
+# define FP_LEVEL_1 1
+# define FP_LEVEL_2 2
+# define FP_LEVEL_3 3
+# define FP_LEVEL_4 4
+# define FP_LEVEL_5 5
+// Free project levels
 
 // MACROS
 
@@ -110,6 +123,7 @@ void			pthread_create_error(void);
 // error handler 2
 void			malloc_error(void);
 void			mutex_destroy_error(void);
+void			pthread_join_error(void);
 // error handler 2
 
 // forks

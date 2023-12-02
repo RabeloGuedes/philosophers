@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 13:19:09 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/02 14:12:48 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/02 14:27:00 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,13 @@ void	mutex_destroy_error(void)
 {
 	write(2, MUTEX_DESTROY_ERROR_MESSAGE,
 		ft_strlen(MUTEX_DESTROY_ERROR_MESSAGE));
+}
+
+/// @brief This function displays an error message explaining
+// that the pthread_join function call failed.
+/// @param  
+void	pthread_join_error(void)
+{
+	write(2, PTHREAD_JOIN_ERROR_MESSAGE,
+		ft_strlen(PTHREAD_JOIN_ERROR_MESSAGE));
 }

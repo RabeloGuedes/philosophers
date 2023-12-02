@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 11:14:56 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/11/30 22:57:43 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/02 14:42:24 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,13 @@ bool	init_philos(t_program *program)
 	program->philos = create_philos(program->philos_amount);
 	if (!program->philos)
 	{
-		free_project(program, 4, &malloc_error);
+		free_project(program, FP_LEVEL_4, &malloc_error);
 		return (false);
 	}
 	program->monitor->philos = program->philos;
 	if (!init_threads(program->philos, program->philos_amount))
 	{
-		free_project(program, 5, &pthread_create_error);
+		free_project(program, FP_LEVEL_5, &pthread_create_error);
 		return (false);
 	}
 	philos_attributes(program->av,
