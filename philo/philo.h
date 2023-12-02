@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:39:34 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/02 14:30:24 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/02 14:58:54 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ typedef struct s_monitor
 // monitor
 
 // program
-typedef	struct s_program
+typedef struct s_program
 {
 	int				ac;
 	char			**av;
@@ -134,7 +134,7 @@ bool			init_forks(t_program *program, size_t num_of_philos);
 // memory
 void			destroy_mutexes(pthread_mutex_t *forks, size_t num_of_philos);
 void			free_project(t_program *program,
-			size_t level, void (*call_back_fn)(void));
+					size_t level, void (*call_back_fn)(void));
 void			destroy_monitor(t_monitor *monitor, size_t level);
 // memory
 
@@ -158,12 +158,13 @@ void			forks_on_table(t_program *program);
 t_philo			*create_philos(size_t num_of_philos);
 bool			init_threads(t_philo *philos, size_t philos_amount);
 void			philos_attributes(char **av,
-			t_philo *philos, t_monitor *monitor);
+					t_philo *philos, t_monitor *monitor);
 // philos
 
 // program
 bool			init_program(int ac, char **av,
-			t_program *program, t_monitor *monitor);
+					t_program *program, t_monitor *monitor);
+bool			run_program(t_program *program);
 // program
 
 // utils

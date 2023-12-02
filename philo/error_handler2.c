@@ -6,11 +6,11 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 13:19:09 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/02 14:27:00 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/02 14:56:33 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include  "philo.h"
+#include "philo.h"
 
 /// @brief This function displays an error message explaining
 // that the memory allocation failed!

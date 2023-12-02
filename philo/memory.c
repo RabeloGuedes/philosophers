@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:59:05 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/11/30 22:25:26 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/02 14:56:18 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	destroy_mutexes(pthread_mutex_t *mutex, size_t num_of_mutexes)
 			mutex_destroy_error();
 	}
 }
+
 /// @brief Destroys all mutexes from monitor.
 /// @param monitor 
 void	destroy_monitor(t_monitor *monitor, size_t level)
@@ -42,7 +43,8 @@ void	destroy_monitor(t_monitor *monitor, size_t level)
 /// @param monitor 
 /// @param philos 
 /// @param forks
-void	free_project(t_program *program, size_t level, void (*call_back_fn)(void))
+void	free_project(t_program *program,
+	size_t level, void (*call_back_fn)(void))
 {
 	call_back_fn();
 	if (level == 1)

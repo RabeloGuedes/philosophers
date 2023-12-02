@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 14:47:17 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/02 14:12:33 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/02 14:56:51 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	signed_param_error(void)
 	write(2, SIGNED_PARAM_ERROR_MESSAGE,
 		ft_strlen(SIGNED_PARAM_ERROR_MESSAGE));
 }
-
 
 /// @brief This function displays an error message
 // explaning that a mutex initialization failed.

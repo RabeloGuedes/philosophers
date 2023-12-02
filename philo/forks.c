@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:49:16 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/02 14:42:05 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/02 14:57:55 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ pthread_mutex_t	*create_forks(size_t num_of_philos)
 	return (forks);
 }
 
-/// @brief This function initializes all forks-mutexes, if the initialization fails
-// it calls the mutex_error function, destroy all previously initialized
-// mutexes and deallocates all forks.
+/// @brief This function initializes all forks-mutexes,
+// if the initialization fails it calls the mutex_error function,
+// destroy all previously initialized mutexes and deallocates all forks.
 /// @param program 
 /// @param num_of_philos 
 /// @return 
@@ -42,8 +42,8 @@ bool	init_forks(t_program *program, size_t num_of_philos)
 	while (program->created_forks_mutexes < num_of_philos)
 	{
 		if (pthread_mutex_init(
-			&program->forks[program->created_forks_mutexes],
-			NULL))
+				&program->forks[program->created_forks_mutexes],
+				NULL))
 		{
 			free_project(program, FP_LEVEL_4, &mutex_error);
 			return (false);
