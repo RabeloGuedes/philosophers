@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:00:42 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/02 14:43:08 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/03 18:00:43 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ bool	init_monitor(t_program *program, char **av)
 		program->monitor->num_least_meals = ft_atoul(*(av + 4));
 	else
 		program->monitor->num_least_meals = -1;
+	program->monitor->philos_amount = program->philos_amount;
 	return (true);
 }

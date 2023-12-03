@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:39:34 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/02 14:58:54 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/03 18:08:53 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@
 # define WRONG_PARAM_AMOUNT_ERROR_MESSAGE4 "<time_to_sleep_ms> [number_of_"
 # define WRONG_PARAM_AMOUNT_ERROR_MESSAGE5 "times_each_philosopher_must_eat]\n"
 // wrong parameter amount error messages
+
+// getimeofday error message
+# define GETTIMEOFDAY_ERROR_MESSAGE "Error: gettimeofday() failed!n"
+// getimeofday error message
 
 // mutex error message
 # define MUTEX_ERROR_MESSAGE "Error: Mutex failed!\n"
@@ -64,6 +68,20 @@
 # define FP_LEVEL_5 5
 // Free project levels
 
+// Time factor
+# define MICROSECONDS_IN_A_SECOND 1000000
+# define MICROSECONDS_IN_A_MILLISECOND 1000
+# define MILLISECONDS_IN_A_SECOND 1000
+// Time factor
+
+// philo actions
+# define SLEEPING "is sleeping\n"
+# define THINKING "is thinking\n"
+# define TOOK_FORK "has taken a fork\n"
+# define DIED "died\n"
+# define EATING "is eating\n"
+// philo actions
+
 // MACROS
 
 // STRUCTS
@@ -71,7 +89,10 @@
 typedef struct s_philo
 {
 	bool			*anyone_dead;
+	bool			eating;
 	size_t			id;
+	size_t			start_timestamp;
+	size_t			last_meal_timestamp;
 	size_t			time_to_die_ms;
 	size_t			time_to_eat_ms;
 	size_t			time_to_sleep_ms;
@@ -91,9 +112,11 @@ typedef struct s_monitor
 {
 	bool			anyone_dead;
 	long			num_least_meals;
+	size_t			philos_amount;
 	pthread_mutex_t	dead_flag_lock;
 	pthread_mutex_t	printf_lock;
 	pthread_mutex_t	meals_flag_lock;
+	pthread_t		thread;
 	t_philo			*philos;
 }				t_monitor;
 // monitor
@@ -124,6 +147,7 @@ void			pthread_create_error(void);
 void			malloc_error(void);
 void			mutex_destroy_error(void);
 void			pthread_join_error(void);
+void			gettimeofday_error(void);
 // error handler 2
 
 // forks
@@ -138,6 +162,14 @@ void			free_project(t_program *program,
 void			destroy_monitor(t_monitor *monitor, size_t level);
 // memory
 
+// monitor routine
+void			*monitor_routine(void *moni);
+bool			check_if_alive(t_philo *philo);
+bool			is_anyone_dead(t_philo *philos);
+bool			enough_meals_checker(t_philo *philo, t_monitor *monitor);
+bool			is_everybody_satisfied(t_monitor *monitor, t_philo *philos);
+// monitor routine
+
 // monitor
 bool			init_monitor(t_program *program, char **av);
 // monitor
@@ -150,13 +182,17 @@ bool			check_all_params(char **av);
 
 // philo routine
 void			*philo_routine(void *phi);
+void			go_sleep(t_philo *philo);
+void			go_think(t_philo *philo);
+void			go_eat(t_philo *philo);
 // philo routine
 
 // philos
 bool			init_philos(t_program *program);
 void			forks_on_table(t_program *program);
 t_philo			*create_philos(size_t num_of_philos);
-bool			init_threads(t_philo *philos, size_t philos_amount);
+bool			init_threads(t_monitor *monitor,
+					t_philo *philos, size_t philos_amount);
 void			philos_attributes(char **av,
 					t_philo *philos, t_monitor *monitor);
 // philos
@@ -165,10 +201,14 @@ void			philos_attributes(char **av,
 bool			init_program(int ac, char **av,
 					t_program *program, t_monitor *monitor);
 bool			run_program(t_program *program);
+void			printf_msg(t_philo *philo, const char *str);
+bool			check_dead_flag(t_philo *philo);
 // program
 
 // utils
 size_t			ft_strlen(const char *str);
 size_t			ft_atoul(const char *str);
+void			uwait(size_t microseconds);
+size_t			timestamp(void);
 // utils
 #endif

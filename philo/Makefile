@@ -1,9 +1,9 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -pthread
+CFLAGS = -Wall -Wextra -Werror -pthread -fsanitize=address,undefined
 NAME = philo
 
 SRC = 	error_handler.c error_handler2.c forks.c memory.c monitor.c\
-		params_checker.c philo_routine.c philo.c program.c utils.c
+		params_checker.c philo_routine.c philo.c program.c utils.c monitor_routine.c
 
 ROOT_DIR = ./
 OBJ_DIR = obj

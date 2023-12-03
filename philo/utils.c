@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 14:49:53 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/02 16:17:42 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/02 17:51:04 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	uwait(size_t microseconds)
 	{
 		if (gettimeofday(&curr, NULL) == -1)
 			gettimeofday_error();
-		elapsed = (curr.tv_sec - start.tv_sec) * MICROSECONDS_IN_A_SECOND\
+		elapsed = (curr.tv_sec - start.tv_sec) * MICROSECONDS_IN_A_SECOND \
 			+ (curr.tv_usec - start.tv_usec);
 		if (elapsed >= microseconds)
 			return ;
