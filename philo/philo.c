@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 11:14:56 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/04 18:00:40 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/04 20:12:16 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,11 @@ t_philo	*create_philos(size_t num_of_philos)
 /// @param forks 
 /// @param philos_amount 
 /// @return 
-bool	init_threads(t_monitor *monitor, t_philo *philos, size_t philos_amount)
+bool	init_threads(t_philo *philos, size_t philos_amount)
 {
 	size_t	i;
 
 	i = 0;
-	// if (pthread_create(&monitor->thread, NULL, &monitor_routine, monitor))
-	// 	return (false);
-	(void)monitor;
 	while (i < philos_amount)
 	{
 		if (pthread_create(&philos[i].thread, NULL, &philo_routine, &philos[i]))
@@ -116,8 +113,7 @@ bool	init_philos(t_program *program)
 	if (!init_meal_lock(program, program->philos_amount))
 		return (false);
 	program->monitor->philos = program->philos;
-	if (!init_threads(program->monitor,
-			program->philos, program->philos_amount))
+	if (!init_threads(program->philos, program->philos_amount))
 	{
 		free_project(program, FP_LEVEL_5, &pthread_create_error);
 		return (false);

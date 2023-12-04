@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:39:34 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/04 17:55:08 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/04 20:12:36 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,8 +192,7 @@ void			go_eat(t_philo *philo);
 bool			init_philos(t_program *program);
 void			forks_on_table(t_program *program);
 t_philo			*create_philos(size_t num_of_philos);
-bool			init_threads(t_monitor *monitor,
-					t_philo *philos, size_t philos_amount);
+bool			init_threads(t_philo *philos, size_t philos_amount);
 void			philos_attributes(char **av,
 					t_philo *philos, t_monitor *monitor);
 // philos

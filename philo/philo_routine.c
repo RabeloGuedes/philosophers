@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 22:40:22 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/04 18:06:38 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/04 20:05:18 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,29 +72,6 @@ void	go_eat(t_philo *philo)
 	pthread_mutex_unlock(philo->left_fork);
 	philo->eating = false;
 }
-
-// void	eat_even(t_philo *philo)
-// {
-// 	pthread_mutex_lock(philo->left_fork);
-// 	printf_msg(philo, TOOK_FORK);
-// 	if (philo->philos_amount == 1)
-// 	{
-// 		uwait(philo->time_to_die_ms);
-// 		pthread_mutex_unlock(philo->left_fork);
-// 		return ;
-// 	}
-// 	pthread_mutex_lock(philo->right_fork);
-// 	printf_msg(philo, TOOK_FORK);
-// 	printf_msg(philo, EATING);
-// 	philo->eating = true;
-// 	philo->last_meal_timestamp = timestamp();
-// 	uwait(philo->time_to_eat_ms);
-// 	pthread_mutex_lock(&philo->meals_flag_lock);
-// 	philo->num_meals++;
-// 	pthread_mutex_unlock(&philo->meals_flag_lock);
-// 	pthread_mutex_unlock(philo->right_fork);
-// 	pthread_mutex_unlock(philo->left_fork);
-// }
 
 /// @brief This function makes half of the philosophers sleep and
 // the other half execute straitforward all routines.
