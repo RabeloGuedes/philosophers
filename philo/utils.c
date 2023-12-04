@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 14:49:53 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/02 17:51:04 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:57:05 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,27 @@ size_t	ft_atoul(const char *str)
 	return (res);
 }
 
-/// @brief This function pause the process for the amount of microseconds
+/// @brief This function pause the process for the amount of milliseconds
 // given as parameter.
-/// @param microseconds 
-void	uwait(size_t microseconds)
+/// @param milliseconds 
+void	uwait(size_t milliseconds)
 {
 	struct timeval	start;
 	struct timeval	curr;
 	size_t			elapsed;
+	size_t			end;
 
 	if (gettimeofday(&start, NULL) == -1)
 		gettimeofday_error();
+	end = (start.tv_sec * 1000 + start.tv_usec / 1000) + milliseconds; 
 	while (1)
 	{
 		if (gettimeofday(&curr, NULL) == -1)
 			gettimeofday_error();
-		elapsed = (curr.tv_sec - start.tv_sec) * MICROSECONDS_IN_A_SECOND \
-			+ (curr.tv_usec - start.tv_usec);
-		if (elapsed >= microseconds)
+		elapsed = curr.tv_sec * 1000 + curr.tv_usec / 1000;
+		if (elapsed >= end)
 			return ;
+		usleep(100);
 	}
 }
 

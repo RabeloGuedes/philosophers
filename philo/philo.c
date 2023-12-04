@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 11:14:56 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/04 15:29:20 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/04 18:00:40 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ bool	init_threads(t_monitor *monitor, t_philo *philos, size_t philos_amount)
 	size_t	i;
 
 	i = 0;
-	if (pthread_create(&monitor->thread, NULL, &monitor_routine, monitor))
-		return (false);
+	// if (pthread_create(&monitor->thread, NULL, &monitor_routine, monitor))
+	// 	return (false);
+	(void)monitor;
 	while (i < philos_amount)
 	{
 		if (pthread_create(&philos[i].thread, NULL, &philo_routine, &philos[i]))
@@ -67,7 +68,6 @@ void	philos_attributes(char **av,
 		philos[i].philos_amount = philos_amount;
 		philos[i].anyone_dead = &monitor->anyone_dead;
 		philos[i].dead_flag_lock = &monitor->dead_flag_lock;
-		philos[i].meals_flag_lock = &monitor->meals_flag_lock;
 		philos[i].printf_lock = &monitor->printf_lock;
 		philos[i].time_to_die_ms = ft_atoul(*(av + 1));
 		philos[i].time_to_eat_ms = ft_atoul(*(av + 2));
@@ -113,12 +113,31 @@ bool	init_philos(t_program *program)
 	philos_attributes(program->av,
 		program->philos, program->monitor);
 	forks_on_table(program);
+	if (!init_meal_lock(program, program->philos_amount))
+		return (false);
 	program->monitor->philos = program->philos;
 	if (!init_threads(program->monitor,
 			program->philos, program->philos_amount))
 	{
 		free_project(program, FP_LEVEL_5, &pthread_create_error);
 		return (false);
+	}
+	return (true);
+}
+
+bool	init_meal_lock(t_program *program, size_t philos_amount)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < philos_amount)
+	{
+		if (pthread_mutex_init(&program->philos[i].meals_flag_lock, NULL))
+		{
+			free_project(program, FP_LEVEL_5, &mutex_error);
+			return (false);
+		}
+		i++;
 	}
 	return (true);
 }

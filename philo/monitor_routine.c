@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 17:45:05 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/04 01:22:50 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/04 17:48:07 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@
 /// @return 
 bool	check_if_alive(t_philo *philo)
 {
-	pthread_mutex_lock(philo->meals_flag_lock);
+	pthread_mutex_lock(&philo->meals_flag_lock);
 	if (timestamp() - philo->last_meal_timestamp
 		>= philo->time_to_die_ms && !philo->eating)
 	{
-		pthread_mutex_unlock(philo->meals_flag_lock);
+		pthread_mutex_unlock(&philo->meals_flag_lock);
 		return (false);
 	}
-	pthread_mutex_unlock(philo->meals_flag_lock);
+	pthread_mutex_unlock(&philo->meals_flag_lock);
 	return (true);
 }
 
@@ -63,13 +63,13 @@ bool	is_anyone_dead(t_philo *philos)
 /// @return 
 bool	enough_meals_checker(t_philo *philo, t_monitor *monitor)
 {
-	pthread_mutex_lock(philo->meals_flag_lock);
+	pthread_mutex_lock(&philo->meals_flag_lock);
 	if (philo->num_meals >= (size_t)monitor->num_least_meals)
 	{
-		pthread_mutex_unlock(philo->meals_flag_lock);
+		pthread_mutex_unlock(&philo->meals_flag_lock);
 		return (true);
 	}
-	pthread_mutex_unlock(philo->meals_flag_lock);
+	pthread_mutex_unlock(&philo->meals_flag_lock);
 	return (false);
 }
 
@@ -117,6 +117,6 @@ void	*monitor_routine(void *moni)
 	monitor = (t_monitor *)moni;
 	while (!is_everybody_satisfied(monitor, monitor->philos)
 		&& !is_anyone_dead(monitor->philos))
-		uwait(500);
+		usleep(500);
 	return (monitor);
 }

@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:39:34 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/03 18:08:53 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/04 17:55:08 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ typedef struct s_philo
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*dead_flag_lock;
 	pthread_mutex_t	*printf_lock;
-	pthread_mutex_t	*meals_flag_lock;
+	pthread_mutex_t	meals_flag_lock;
 	pthread_t		thread;
 }				t_philo;
 // philos
@@ -172,6 +172,7 @@ bool			is_everybody_satisfied(t_monitor *monitor, t_philo *philos);
 
 // monitor
 bool			init_monitor(t_program *program, char **av);
+bool			init_meal_lock(t_program *program, size_t philos_amount);
 // monitor
 
 // params_checker
