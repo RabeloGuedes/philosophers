@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -pthread -fsanitize=address,undefined
+CFLAGS = -Wall -Wextra -Werror -pthread -fsanitize=thread
 NAME = philo
 
 SRC = 	error_handler.c error_handler2.c forks.c memory.c monitor.c\

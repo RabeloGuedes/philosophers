@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 17:45:05 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/03 18:02:24 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/04 01:22:50 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ bool	check_if_alive(t_philo *philo)
 }
 
 /// @brief This function checks if any philosopher has died.
-// In case anyon has died it writes a message with the timestamp and
+// In case anyone has died it writes a message with the timestamp and
 // id of the philosopher changing the value of anyone_dead to true.
 // Returns false if all philosophers still alive, otherwise true.
 /// @param philos 
@@ -42,7 +42,7 @@ bool	is_anyone_dead(t_philo *philos)
 	i = 0;
 	while (i < philos[0].philos_amount)
 	{
-		if (check_if_alive(&philos[i]))
+		if (!check_if_alive(&philos[i]))
 		{
 			printf_msg(&philos[i], DIED);
 			pthread_mutex_lock(philos[i].dead_flag_lock);
@@ -86,8 +86,9 @@ bool	is_everybody_satisfied(t_monitor *monitor, t_philo *philos)
 
 	i = 0;
 	statisfied_philos = 0;
+
 	if (monitor->num_least_meals == -1)
-		return (true);
+		return (false);
 	while (i < monitor->philos_amount)
 	{
 		if (enough_meals_checker(&philos[i], monitor))
@@ -115,7 +116,7 @@ void	*monitor_routine(void *moni)
 
 	monitor = (t_monitor *)moni;
 	while (!is_everybody_satisfied(monitor, monitor->philos)
-		&& is_anyone_dead(monitor->philos))
-		;
+		&& !is_anyone_dead(monitor->philos))
+		uwait(500);
 	return (monitor);
 }

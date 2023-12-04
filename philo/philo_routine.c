@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 22:40:22 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/03 17:42:30 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/04 15:28:52 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	*philo_routine(void *phi)
 	philo = (t_philo *)phi;
 	if (philo->id % 2 == 0)
 		go_sleep(philo);
-	while (!philo->anyone_dead)
+	while (!check_dead_flag(philo))
 	{
 		go_eat(philo);
 		go_sleep(philo);
