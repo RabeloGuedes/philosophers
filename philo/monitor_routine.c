@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 17:45:05 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/04 17:48:07 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/05 19:21:11 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,15 @@
 bool	check_if_alive(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->meals_flag_lock);
+	pthread_mutex_lock(philo->timestamp_lock);
 	if (timestamp() - philo->last_meal_timestamp
 		>= philo->time_to_die_ms && !philo->eating)
 	{
+		pthread_mutex_unlock(philo->timestamp_lock);
 		pthread_mutex_unlock(&philo->meals_flag_lock);
 		return (false);
 	}
+	pthread_mutex_unlock(philo->timestamp_lock);
 	pthread_mutex_unlock(&philo->meals_flag_lock);
 	return (true);
 }
@@ -86,7 +89,6 @@ bool	is_everybody_satisfied(t_monitor *monitor, t_philo *philos)
 
 	i = 0;
 	statisfied_philos = 0;
-
 	if (monitor->num_least_meals == -1)
 		return (false);
 	while (i < monitor->philos_amount)
@@ -104,7 +106,6 @@ bool	is_everybody_satisfied(t_monitor *monitor, t_philo *philos)
 	}
 	return (false);
 }
-
 
 /// @brief This function monitors the philosophers until
 // someone dies or all philosophers are satisfied.

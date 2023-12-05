@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 18:13:00 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/04 15:31:25 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/05 19:48:35 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,11 @@ bool	run_program(t_program *program)
 	size_t	i;
 
 	i = 0;
-	if (pthread_join(program->monitor->thread, NULL))
-	{
-		free_project(program, FP_LEVEL_5, &pthread_join_error);
-		return (false);
-	}
 	while (i < program->philos_amount)
 	{
 		if (pthread_join(program->philos[i].thread, NULL))
 		{
-			free_project(program, FP_LEVEL_5, &pthread_join_error);
+			free_project(program, FP_LEVEL_6, &pthread_join_error);
 			return (false);
 		}
 		i++;
@@ -69,18 +64,47 @@ void	printf_msg(t_philo *philo, const char *str)
 {
 	pthread_mutex_lock(philo->printf_lock);
 	if (!check_dead_flag(philo))
-		printf("%li %li %s", timestamp() - philo->start_timestamp, philo->id, str);
+	{
+		pthread_mutex_lock(philo->timestamp_lock);
+		printf("%li %li %s", timestamp() - philo->start_timestamp,
+			philo->id, str);
+		pthread_mutex_unlock(philo->timestamp_lock);
+	}
 	pthread_mutex_unlock(philo->printf_lock);
 }
 
+/// @brief This function checks if any philosopher has died,
+// returns false if everybody is alive or true if someone is dead.
+/// @param philo 
+/// @return 
 bool	check_dead_flag(t_philo *philo)
 {
 	pthread_mutex_lock(philo->dead_flag_lock);
 	if (*philo->anyone_dead)
 	{
 		pthread_mutex_unlock(philo->dead_flag_lock);
-		return(true);
+		return (true);
 	}
 	pthread_mutex_unlock(philo->dead_flag_lock);
 	return (false);
+}
+
+/// @brief This function initializes the threads, if it succeed returns true,
+/// otherwise returns false.
+/// @param philos 
+/// @param forks 
+/// @param philos_amount 
+/// @return 
+bool	init_threads(t_philo *philos, size_t philos_amount)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < philos_amount)
+	{
+		if (pthread_create(&philos[i].thread, NULL, &philo_routine, &philos[i]))
+			return (false);
+		i++;
+	}
+	return (true);
 }

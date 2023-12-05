@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:59:05 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/02 15:38:12 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/05 10:04:32 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	destroy_monitor(t_monitor *monitor, size_t level)
 		destroy_mutexes(&monitor->meals_flag_lock, 1);
 	if (level >= 3)
 		destroy_mutexes(&monitor->printf_lock, 1);
+	if (level >= 4)
+		destroy_mutexes(&monitor->timestamp_lock, 1);
 }
 
 /// @brief  This function deallocates all the memory previously allocated.
@@ -54,12 +56,14 @@ void	free_project(t_program *program,
 		destroy_monitor(program->monitor, 2);
 	else if (level == 3)
 		destroy_monitor(program->monitor, 3);
-	if (level >= 4)
+	else if (level == 4)
+		destroy_monitor(program->monitor, 4);
+	if (level >= 5)
 	{
-		destroy_monitor(program->monitor, 3);
+		destroy_monitor(program->monitor, 4);
 		destroy_mutexes(program->forks, program->created_forks_mutexes);
 		free(program->forks);
 	}
-	if (level >= 5)
+	if (level >= 6)
 		free(program->philos);
 }

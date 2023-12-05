@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:41:56 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/04 17:38:14 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/05 10:06:22 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int ac, char **av)
 		monitor_routine(&monitor);
 		if (!run_program(&program))
 			return (1);
-		free_project(&program, FP_LEVEL_5, NULL);
+		free_project(&program, FP_LEVEL_6, NULL);
 	}
 	else
 	{

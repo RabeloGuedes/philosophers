@@ -3,7 +3,8 @@ CFLAGS = -Wall -Wextra -Werror -pthread #-fsanitize=thread
 NAME = philo
 
 SRC = 	error_handler.c error_handler2.c forks.c memory.c monitor.c\
-		params_checker.c philo_routine.c philo.c program.c utils.c monitor_routine.c
+		params_checker.c philo_routine.c philo.c program.c utils.c\
+		monitor_routine.c atomic_routines.c
 
 ROOT_DIR = ./
 OBJ_DIR = obj

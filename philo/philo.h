@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:39:34 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/04 20:12:36 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/05 20:04:06 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@
 # define FP_LEVEL_3 3
 # define FP_LEVEL_4 4
 # define FP_LEVEL_5 5
+# define FP_LEVEL_6 6
 // Free project levels
 
 // Time factor
@@ -102,6 +103,7 @@ typedef struct s_philo
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*dead_flag_lock;
 	pthread_mutex_t	*printf_lock;
+	pthread_mutex_t	*timestamp_lock;
 	pthread_mutex_t	meals_flag_lock;
 	pthread_t		thread;
 }				t_philo;
@@ -116,6 +118,7 @@ typedef struct s_monitor
 	pthread_mutex_t	dead_flag_lock;
 	pthread_mutex_t	printf_lock;
 	pthread_mutex_t	meals_flag_lock;
+	pthread_mutex_t	timestamp_lock;
 	pthread_t		thread;
 	t_philo			*philos;
 }				t_monitor;
@@ -134,6 +137,14 @@ typedef struct s_program
 }		t_program;
 // program
 // STRUCTS
+
+// atomic routines
+void			eat_even(t_philo *philo);
+void			eat_odd(t_philo *philo);
+void			go_eat(t_philo *philo);
+void			go_sleep(t_philo *philo);
+void			go_think(t_philo *philo);
+// atomic routines
 
 // error handler
 void			no_num_param_error(void);
@@ -173,6 +184,8 @@ bool			is_everybody_satisfied(t_monitor *monitor, t_philo *philos);
 // monitor
 bool			init_monitor(t_program *program, char **av);
 bool			init_meal_lock(t_program *program, size_t philos_amount);
+bool			init_monitor_1(t_program *program);
+bool			init_monitor_2(t_program *program);
 // monitor
 
 // params_checker
@@ -183,9 +196,6 @@ bool			check_all_params(char **av);
 
 // philo routine
 void			*philo_routine(void *phi);
-void			go_sleep(t_philo *philo);
-void			go_think(t_philo *philo);
-void			go_eat(t_philo *philo);
 // philo routine
 
 // philos

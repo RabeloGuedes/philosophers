@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:49:16 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/02 14:57:55 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/05 10:05:27 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ bool	init_forks(t_program *program, size_t num_of_philos)
 	program->forks = create_forks(num_of_philos);
 	if (!program->forks)
 	{
-		free_project(program, FP_LEVEL_3, &malloc_error);
+		free_project(program, FP_LEVEL_4, &malloc_error);
 		return (false);
 	}
 	while (program->created_forks_mutexes < num_of_philos)
@@ -45,7 +45,7 @@ bool	init_forks(t_program *program, size_t num_of_philos)
 				&program->forks[program->created_forks_mutexes],
 				NULL))
 		{
-			free_project(program, FP_LEVEL_4, &mutex_error);
+			free_project(program, FP_LEVEL_5, &mutex_error);
 			return (false);
 		}
 		program->created_forks_mutexes++;

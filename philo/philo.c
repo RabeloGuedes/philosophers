@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 11:14:56 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/04 20:12:16 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/05 19:41:23 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,6 @@ t_philo	*create_philos(size_t num_of_philos)
 	if (!philos)
 		return (NULL);
 	return (philos);
-}
-
-/// @brief This function initializes the threads, if it succeed returns true,
-/// otherwise returns false.
-/// @param philos 
-/// @param forks 
-/// @param philos_amount 
-/// @return 
-bool	init_threads(t_philo *philos, size_t philos_amount)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < philos_amount)
-	{
-		if (pthread_create(&philos[i].thread, NULL, &philo_routine, &philos[i]))
-			return (false);
-		i++;
-	}
-	return (true);
 }
 
 /// @brief This function assigns to each philosophers its attributes.
@@ -66,6 +46,7 @@ void	philos_attributes(char **av,
 		philos[i].anyone_dead = &monitor->anyone_dead;
 		philos[i].dead_flag_lock = &monitor->dead_flag_lock;
 		philos[i].printf_lock = &monitor->printf_lock;
+		philos[i].timestamp_lock = &monitor->timestamp_lock;
 		philos[i].time_to_die_ms = ft_atoul(*(av + 1));
 		philos[i].time_to_eat_ms = ft_atoul(*(av + 2));
 		philos[i].time_to_sleep_ms = ft_atoul(*(av + 3));
@@ -104,7 +85,7 @@ bool	init_philos(t_program *program)
 	program->philos = create_philos(program->philos_amount);
 	if (!program->philos)
 	{
-		free_project(program, FP_LEVEL_4, &malloc_error);
+		free_project(program, FP_LEVEL_5, &malloc_error);
 		return (false);
 	}
 	philos_attributes(program->av,
@@ -115,7 +96,7 @@ bool	init_philos(t_program *program)
 	program->monitor->philos = program->philos;
 	if (!init_threads(program->philos, program->philos_amount))
 	{
-		free_project(program, FP_LEVEL_5, &pthread_create_error);
+		free_project(program, FP_LEVEL_6, &pthread_create_error);
 		return (false);
 	}
 	return (true);
@@ -130,7 +111,7 @@ bool	init_meal_lock(t_program *program, size_t philos_amount)
 	{
 		if (pthread_mutex_init(&program->philos[i].meals_flag_lock, NULL))
 		{
-			free_project(program, FP_LEVEL_5, &mutex_error);
+			free_project(program, FP_LEVEL_6, &mutex_error);
 			return (false);
 		}
 		i++;
