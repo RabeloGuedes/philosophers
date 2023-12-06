@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 18:13:00 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/05 19:48:35 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/06 14:49:03 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,11 @@ bool	run_program(t_program *program)
 void	printf_msg(t_philo *philo, const char *str)
 {
 	pthread_mutex_lock(philo->printf_lock);
+	pthread_mutex_lock(philo->timestamp_lock);
 	if (!check_dead_flag(philo))
-	{
-		pthread_mutex_lock(philo->timestamp_lock);
 		printf("%li %li %s", timestamp() - philo->start_timestamp,
 			philo->id, str);
-		pthread_mutex_unlock(philo->timestamp_lock);
-	}
+	pthread_mutex_unlock(philo->timestamp_lock);
 	pthread_mutex_unlock(philo->printf_lock);
 }
 

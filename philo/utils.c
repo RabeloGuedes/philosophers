@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 14:49:53 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/04 16:57:05 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/06 15:12:31 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,14 @@ size_t	timestamp(void)
 		gettimeofday_error();
 	return (now.tv_sec * MILLISECONDS_IN_A_SECOND
 		+ now.tv_usec / MICROSECONDS_IN_A_MILLISECOND);
+}
+
+/// @brief This function returns the absolute value given as parameter.
+/// @param value 
+/// @return 
+long	abs_value(long value)
+{
+	if (value < 0)
+		return (-value);
+	return (value);
 }

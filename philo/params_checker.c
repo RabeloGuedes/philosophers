@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:43:41 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/02 14:13:13 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:14:25 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,11 @@ bool	is_param_valid(char *str)
 /// @return 
 bool	check_all_params(char **av)
 {
+	if (!ft_atoul(*av))
+	{
+		no_philo_error();
+		return (false);
+	}
 	while (*av)
 	{
 		if (!is_param_valid(*av))

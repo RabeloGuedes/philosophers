@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 19:29:32 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/05 20:02:57 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/06 15:13:28 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,14 @@
 void	go_eat(t_philo *philo)
 {
 	if (philo->id % 2 == 0)
-		eat_even(philo);
+	{
+		if (!eat_even(philo))
+			return ;
+	}
 	else
 	{
-		eat_odd(philo);
+		if (!eat_odd(philo))
+			return ;
 	}
 	printf_msg(philo, EATING);
 	philo->eating = true;
@@ -39,7 +43,7 @@ void	go_eat(t_philo *philo)
 
 /// @brief This is the sequence for the philosophers, which the id is even,
 // in this case the philosopher grabs the left fork first, then the right. 
-void	eat_even(t_philo *philo)
+bool	eat_even(t_philo *philo)
 {
 	pthread_mutex_lock(philo->left_fork);
 	printf_msg(philo, TOOK_FORK);
@@ -47,16 +51,17 @@ void	eat_even(t_philo *philo)
 	{
 		uwait(philo->time_to_die_ms);
 		pthread_mutex_unlock(philo->left_fork);
-		return ;
+		return (false);
 	}
 	pthread_mutex_lock(philo->right_fork);
 	printf_msg(philo, TOOK_FORK);
+	return (true);
 }
 
 /// @brief This is the sequence for the philosophers, which the id is odd,
 // in this case the philosopher grabs the right fork first, then the left. 
 /// @param philo 
-void	eat_odd(t_philo *philo)
+bool	eat_odd(t_philo *philo)
 {
 	pthread_mutex_lock(philo->right_fork);
 	printf_msg(philo, TOOK_FORK);
@@ -64,10 +69,11 @@ void	eat_odd(t_philo *philo)
 	{
 		uwait(philo->time_to_die_ms);
 		pthread_mutex_unlock(philo->right_fork);
-		return ;
+		return (false);
 	}
 	pthread_mutex_lock(philo->left_fork);
 	printf_msg(philo, TOOK_FORK);
+	return (true);
 }
 
 /// @brief This function makes the philosopher sleep for the time_to_sleep_ms
@@ -85,5 +91,6 @@ void	go_sleep(t_philo *philo)
 void	go_think(t_philo *philo)
 {
 	printf_msg(philo, THINKING);
-	usleep(500);
+	usleep(500 + abs_value((long)philo->time_to_eat_ms \
+		- (long)philo->time_to_sleep_ms) * MICROSECONDS_IN_A_MILLISECOND);
 }

@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:39:34 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/05 20:04:06 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:13:48 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@
 // no numeric parameter error message
 # define NO_NUM_PARAM_ERROR_MESSAGE "Error: Argument is not numeric!\n"
 // no numeric parameter error message
+
+// no philosopher error message
+# define NO_PHILO_ERROR_MESSAGE1 "Error: Really funny, you should provide"
+# define NO_PHILO_ERROR_MESSAGE2 " at least one philosopher\n"
+// no philosopher error message
 
 // wrong parameter amount error messages
 # define WRONG_PARAM_AMOUNT_ERROR_MESSAGE1 "Error: Wrong amount of arguments\n"
@@ -139,8 +144,8 @@ typedef struct s_program
 // STRUCTS
 
 // atomic routines
-void			eat_even(t_philo *philo);
-void			eat_odd(t_philo *philo);
+bool			eat_even(t_philo *philo);
+bool			eat_odd(t_philo *philo);
 void			go_eat(t_philo *philo);
 void			go_sleep(t_philo *philo);
 void			go_think(t_philo *philo);
@@ -159,6 +164,7 @@ void			malloc_error(void);
 void			mutex_destroy_error(void);
 void			pthread_join_error(void);
 void			gettimeofday_error(void);
+void			no_philo_error(void);
 // error handler 2
 
 // forks
@@ -220,5 +226,6 @@ size_t			ft_strlen(const char *str);
 size_t			ft_atoul(const char *str);
 void			uwait(size_t microseconds);
 size_t			timestamp(void);
+long			abs_value(long value);
 // utils
 #endif

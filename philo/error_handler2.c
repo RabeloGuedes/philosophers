@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 13:19:09 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/02 15:58:46 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:13:28 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,13 @@ void	gettimeofday_error(void)
 {
 	write(2, GETTIMEOFDAY_ERROR_MESSAGE,
 		ft_strlen(GETTIMEOFDAY_ERROR_MESSAGE));
+}
+
+/// @brief This function displays an error message explaining
+// that there is no philosopher passed as parameter.
+/// @param  
+void	no_philo_error(void)
+{
+	write(2, NO_PHILO_ERROR_MESSAGE1, ft_strlen(NO_PHILO_ERROR_MESSAGE1));
+	write(2, NO_PHILO_ERROR_MESSAGE2, ft_strlen(NO_PHILO_ERROR_MESSAGE2));
 }

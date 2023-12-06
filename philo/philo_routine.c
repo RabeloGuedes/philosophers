@@ -6,7 +6,7 @@
 /*   By: arabelo- <arabelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 22:40:22 by arabelo-          #+#    #+#             */
-/*   Updated: 2023/12/05 19:49:51 by arabelo-         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:31:22 by arabelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	*philo_routine(void *phi)
 	t_philo	*philo;
 
 	philo = (t_philo *)phi;
-	if (philo->id % 2 == 0)
+	if (philo->id % 2 == 0 || (philo->philos_amount % 2 != 0
+			&& philo->id == philo->philos_amount))
 	{
 		go_think(philo);
 		uwait(1);
