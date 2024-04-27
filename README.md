@@ -5,7 +5,7 @@
     Saiba mais
   </summary>
   
-  # Libft
+  # Philosophers
 Projeto da [42](https://www.42lisboa.com) - Rank 3 - Philosophers
 
 <details>
@@ -77,7 +77,7 @@ Projeto da [42](https://www.42lisboa.com) - Rank 3 - Philosophers
     More
   </summary>
   
-  # Libft
+  # Philosophers
 Project from [42](https://www.42lisboa.com/) - Rank 3 - Philo
 
 <details>
@@ -149,7 +149,7 @@ Project from [42](https://www.42lisboa.com/) - Rank 3 - Philo
     Mehr
   </summary>
   
-  # Libft
+  # Philosophers
 Projekt von [42](https://www.42lisboa.com/) - Rank 3 - Philo
 
 <details>
